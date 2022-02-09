@@ -1,4 +1,4 @@
-var backendURL = "http://192.168.100.26:8080/demo/api/book";
+var backendURL = "http://35.180.111.47:8080/demo/api/book";
 window.onload = function() {
 
 
