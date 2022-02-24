@@ -4,6 +4,9 @@ window.onload = function() {
 
     dupaAutor = document.getElementById("dupaAutor");
     dupaAutor.onkeyup = findByAuthor;
+
+    dupaTitle = document.getElementById("dupaTitle");
+    dupaTitle.onkeyup = findByTitle;
 };
 
 
@@ -14,12 +17,29 @@ function findByAuthor() {
 
             var books = JSON.parse(this.responseText);
             adaugaInTabel(books);
+
             // aici adaugam linie in tabel
         }
     };
     xhttp.open("GET", backendURL + "?author=" + dupaAutor.value, true);
     xhttp.send();
 }
+
+function findByTitle() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+
+            var books = JSON.parse(this.responseText);
+            adaugaInTabel(books);
+
+        }
+    };
+    xhttp.open("GET", backendURL + "?title=" + dupaTitle.value, true);
+    xhttp.send();
+}
+
+
 
 function adaugaInTabel(books) {
     var table = document.getElementById("myTable");
