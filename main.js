@@ -1,4 +1,4 @@
-var backendURL = "http://35.180.111.47:8080/demo/api/book";
+var backendURL = "http://ec2-15-237-142-192.eu-west-3.compute.amazonaws.com:8080/demo/api/book";
 window.onload = function() {
 
 
@@ -68,5 +68,42 @@ function curataTabel() {
     for (var i = totalRowCount - 1; i > 0; i--) {
         table.deleteRow(i);
     }
+
+
+
+
+}
+
+function salveazaDate() {
+    var author = document.getElementById("authorId").value;
+    var titlu = document.getElementById("titluId").value;
+    var an = document.getElementById("anId").value;
+    var pagini = document.getElementById("nrPagId").value;
+    var newBook = {
+        authorName: author,
+        title: titlu,
+        pageCount: pagini,
+        publishYear: an
+    }
+
+    trimiteDatePentruSalvare(newBook);
+
+}
+
+
+function trimiteDatePentruSalvare(newBook) {
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log("datele au fost salvate");
+
+        }
+    };
+    xhttp.open("POST", backendURL, true);
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.send(JSON.stringify(newBook));
+
+
 
 }
